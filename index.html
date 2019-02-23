@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="author" content="Danah Kim" />
         <title>Momentum</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="index.css" />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <div class="js-clock">
-            <h1>00:00</h1>
+        <section class="center">
+            <div class="js-clock clock">
+                <h3 class="clock_text">00:00</h3>
+            </div>
+            <div class="js-name name"></div>
+            <div>
+                <form class="js-to-do to-do">
+                    <input class="js-add-to-do to-do_add-to-do" type="text" placeholder="Write a To Do here" />
+                </form>
+                <ul class="js-list list"></ul>
+            </div>
+        </section>
+        <div class="js-location location">
+            <span class="location_text"></span>
         </div>
-        <form class="js-form form">
-            <input type="test" placeholder="What is your name?" />
-        </form>
-        <h4 class="js-greetings greetings"></h4>
-        <form class="js-toDoForm">
-            <input type="text" placeholder="Write a to do" />
-        </form>
-        <ul class="js-toDoList"></ul>
-        <script src="clock.js"></script>
-        <script src="gretting.js"></script>
-        <script src="todo.js"></script>
+        <div class="js-weather weather">
+            <span class="weather_text"></span>
+        </div>
+
+        <script src="js/bg.js"></script>
+        <script src="js/clock.js"></script>
+        <script src="js/weather.js"></script>
+        <script src="js/name.js"></script>
+        <script src="js/todo.js"></script>
     </body>
 </html>
