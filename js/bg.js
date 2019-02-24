@@ -4,7 +4,7 @@ const UNSPLASH_API_KEY = "14a9c1addd49a074658a16a0095e16d079fb1c7d1092d6100e09d1
 const body = document.querySelector("body"),
   locationContainer = document.querySelector(".js-location span");
 
-function loadBackground() {
+const loadBackground = () => {
   const savedImage = localStorage.getItem("bg");
   if (savedImage === null) {
     getBackground();
@@ -21,7 +21,7 @@ function loadBackground() {
   return;
 }
 
-function saveBackground(imageUrl, city, country, name) {
+const saveBackground = (imageUrl, city, country, name) => {
   const savedImage = localStorage.getItem("bg");
   if (savedImage !== null) {
     localStorage.removeItem("bg");
@@ -40,7 +40,7 @@ function saveBackground(imageUrl, city, country, name) {
   return;
 }
 
-function getBackground() {
+const getBackground = () => {
   fetch(UNSPLASH_URL)
     .then(response => response.json())
     .then(json => {

@@ -1,6 +1,6 @@
 const nameContainer = document.querySelector(".js-name");
 
-function paintName(text){
+const paintName = text => {
     nameContainer.innerHTML = "";
     const title = document.createElement("span");
     title.className = "name_text";
@@ -9,7 +9,7 @@ function paintName(text){
     return;
 }
 
-function handleSubmit(event){
+const onSubmit = event => {
     event.preventDefault();
     const submitTarget = event.target,
         submitInput = submitTarget.querySelector("input"),
@@ -19,19 +19,19 @@ function handleSubmit(event){
     return; 
 }
 
-function paintInput(){
+const paintInput = () => {
     const nameInput = document.createElement("input"),
         nameForm = document.createElement("form");
     nameInput.className = "name_input"
     nameInput.type = "text"
     nameInput.placeholder = "Please enter your name here";
-    nameForm.addEventListener("submit", handleSubmit);
+    nameForm.addEventListener("submit", onSubmit);
     nameForm.appendChild(nameInput);
     nameContainer.appendChild(nameForm);
     return;
 }
 
-function loadName(){
+const loadName = () => {
     const name = localStorage.getItem("userName");
     if(name === null){
         paintInput();

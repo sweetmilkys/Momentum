@@ -4,7 +4,7 @@ const toDoForm = document.querySelector(".js-to-do"),
 
 let toDos = [];
 
-function handleSubmit(event) {
+const handleSubmit = event => {
     event.preventDefault();
     const inputValue = toDoInput.value;
     toDoInput.value = "";
@@ -12,7 +12,7 @@ function handleSubmit(event) {
     return;
 }
 
-function saveToDo(text){
+const saveToDo = text => {
     const toDoObject = {
         id: toDos.length + 1,
         value: text
@@ -22,39 +22,42 @@ function saveToDo(text){
     return;
 }
 
-function persistToDos() {
+const persistToDos = () => {
     localStorage.setItem("toDos", JSON.stringify(toDos));
     return;
 }
 
-function handleDelete(event) {
+const handleDelete = event => {
     const target = event.target,
-        li = target.parentElement
+        li = target.parentElement,
         ul = li.parentElement,
-        toDoId = li.id;
+        toDoId = ul.id;
     ul.removeChild(li);
-    toDos = toDos.filter(toDo => {
+    toDos = toDos.filter(function(toDo) {
         return toDo.id !== parseInt(toDoId);
     });
     persistToDos();
     return;
 }
 
-function paintToDo(text) {
+const paintToDo = text => {
     const toDo = document.createElement("li"),
         deleteBtn = document.createElement("span"),
         toDoLabel = document.createElement("label");
-    toDo.attributes({class: "toDo", id: toDos.length + 1});
+    toDo.className = "toDo";
+    toDo.id = toDos.length + 1;
     deleteBtn.className = "toDo_button";
-    deleteBtn.innerHTML = "❌";
+    deleteBtn.innerHTML = " ❌";
     deleteBtn.addEventListener("click", handleDelete);
-    todoLabel.innerHTML = text;
-    toDoList.appendChild(toDo.appendChild(toDoLabel.appendChild(deleteBtn)));
+    toDoLabel.innerHTML = text;
+    toDoLabel.appendChild(deleteBtn);
+    toDo.appendChild(toDoLabel);
+    toDoList.appendChild(toDo);
     saveToDo(text);
     return;
 }
 
-function loadToDos(){
+const loadToDos = () => {
     const loadedToDos = localStorage.getItem("toDos");
     if(loadedToDos !== null){
         const parsedToDos = JSON.parse(loadedToDos);
@@ -65,7 +68,7 @@ function loadToDos(){
     return;
 }
 
-function init(){
+function init() {
     loadToDos();
     toDoForm.addEventListener("submit", handleSubmit);
 }

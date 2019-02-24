@@ -2,7 +2,7 @@ const WEATHER_API_KEY = "db42a7e15e9c6638d604e8f1009448e0",
     WEATHER_API = "https://api.openweathermap.org/data/2.5/weather?",
     weather = document.querySelector(".js-weather");
 
-function getWeather(coords) {
+const getWeather = coords => {
     fetch(`${WEATHER_API}lat=${coords.lat}&lon=${coords.lng}&appid=${WEATHER_API_KEY}&units=metric`)
         .then(response => {return response.json()})
         .then(json => {
@@ -12,7 +12,7 @@ function getWeather(coords) {
         }); 
 }
 
-function handleGeoSuccess(position) {
+const handleGeoSuccess = position => {
     const lat = position.coords.latitude,
         lng = position.coords.longitude,
         coords = {
@@ -23,11 +23,11 @@ function handleGeoSuccess(position) {
     getWeather(coords);
 }
 
-function handleGeoFailure() {
+const handleGeoFailure = () => {
     console.log("no location");
 }
 
-function loadWeather() {
+const loadWeather = () => {
     const currentCoords = localStorage.getItem("coords");
     if(currentCoords === null){
         navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoFailure);
